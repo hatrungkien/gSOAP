@@ -32,7 +32,7 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
 \******************************************************************************/
 
 
-/* wsa5.h:95 */
+/* wsa5.h:96 */
 #ifndef SOAP_TYPE_wsa5__RelationshipType
 #define SOAP_TYPE_wsa5__RelationshipType (14)
 /* wsa5:RelationshipType */
@@ -41,7 +41,7 @@ enum wsa5__RelationshipType {
 };
 #endif
 
-/* wsa5.h:103 */
+/* wsa5.h:104 */
 #ifndef SOAP_TYPE_wsa5__FaultCodesType
 #define SOAP_TYPE_wsa5__FaultCodesType (15)
 /* wsa5:FaultCodesType */
@@ -60,7 +60,7 @@ enum wsa5__FaultCodesType {
 };
 #endif
 
-/* wsa5.h:253 */
+/* wsa5.h:254 */
 #ifndef SOAP_TYPE__wsa5__IsReferenceParameter
 #define SOAP_TYPE__wsa5__IsReferenceParameter (35)
 /* wsa5:IsReferenceParameter */
@@ -70,7 +70,7 @@ enum _wsa5__IsReferenceParameter {
 };
 #endif
 
-/* wsdd5.h:100 */
+/* wsdd5.h:108 */
 #ifndef SOAP_TYPE_wsdd__FaultCodeType
 #define SOAP_TYPE_wsdd__FaultCodeType (67)
 /* wsdd:FaultCodeType */
@@ -92,24 +92,24 @@ enum wsdd__FaultCodeType {
  *                                                                            *
 \******************************************************************************/
 
-struct wsa5__EndpointReferenceType;	/* wsa5.h:64 */
-struct wsa5__ReferenceParametersType;	/* wsa5.h:67 */
-struct wsa5__MetadataType;	/* wsa5.h:70 */
-struct wsa5__ProblemActionType;	/* wsa5.h:85 */
-struct wsa5__RelatesToType;	/* wsa5.h:73 */
-struct chan__ChannelInstanceType;	/* wsa5.h:259 */
-struct wsdd__HelloType;	/* wsdd5.h:55 */
-struct wsdd__ByeType;	/* wsdd5.h:57 */
-struct wsdd__ProbeType;	/* wsdd5.h:59 */
-struct wsdd__ProbeMatchesType;	/* wsdd5.h:61 */
-struct wsdd__ProbeMatchType;	/* wsdd5.h:63 */
-struct wsdd__ResolveType;	/* wsdd5.h:65 */
-struct wsdd__ResolveMatchesType;	/* wsdd5.h:67 */
-struct wsdd__ResolveMatchType;	/* wsdd5.h:69 */
-struct wsdd__SecurityType;	/* wsdd5.h:73 */
-struct wsdd__SigType;	/* wsdd5.h:75 */
-struct wsdd__ScopesType;	/* wsdd5.h:71 */
-struct wsdd__AppSequenceType;	/* wsdd5.h:77 */
+struct wsa5__EndpointReferenceType;	/* wsa5.h:65 */
+struct wsa5__ReferenceParametersType;	/* wsa5.h:68 */
+struct wsa5__MetadataType;	/* wsa5.h:71 */
+struct wsa5__ProblemActionType;	/* wsa5.h:86 */
+struct wsa5__RelatesToType;	/* wsa5.h:74 */
+struct chan__ChannelInstanceType;	/* wsa5.h:260 */
+struct wsdd__HelloType;	/* wsdd5.h:63 */
+struct wsdd__ByeType;	/* wsdd5.h:65 */
+struct wsdd__ProbeType;	/* wsdd5.h:67 */
+struct wsdd__ProbeMatchesType;	/* wsdd5.h:69 */
+struct wsdd__ProbeMatchType;	/* wsdd5.h:71 */
+struct wsdd__ResolveType;	/* wsdd5.h:73 */
+struct wsdd__ResolveMatchesType;	/* wsdd5.h:75 */
+struct wsdd__ResolveMatchType;	/* wsdd5.h:77 */
+struct wsdd__SecurityType;	/* wsdd5.h:81 */
+struct wsdd__SigType;	/* wsdd5.h:83 */
+struct wsdd__ScopesType;	/* wsdd5.h:79 */
+struct wsdd__AppSequenceType;	/* wsdd5.h:85 */
 struct __wsdd__Hello;	/* wsdx.h:67 */
 struct __wsdd__Bye;	/* wsdx.h:76 */
 struct __wsdd__Probe;	/* wsdx.h:85 */
@@ -120,7 +120,7 @@ struct __tdn__Hello;	/* onvif.h:317 */
 struct __tdn__Bye;	/* onvif.h:384 */
 struct __tdn__Probe;	/* onvif.h:451 */
 
-/* wsa5.h:64 */
+/* wsa5.h:65 */
 #ifndef SOAP_TYPE_wsa5__EndpointReferenceType
 #define SOAP_TYPE_wsa5__EndpointReferenceType (7)
 /* complex XML schema type 'wsa5:EndpointReferenceType': */
@@ -147,7 +147,7 @@ struct SOAP_CMAC wsa5__EndpointReferenceType {
 };
 #endif
 
-/* wsa5.h:67 */
+/* wsa5.h:68 */
 #ifndef SOAP_TYPE_wsa5__ReferenceParametersType
 #define SOAP_TYPE_wsa5__ReferenceParametersType (8)
 /* complex XML schema type 'wsa5:ReferenceParametersType': */
@@ -170,7 +170,7 @@ struct SOAP_CMAC wsa5__ReferenceParametersType {
 };
 #endif
 
-/* wsa5.h:70 */
+/* wsa5.h:71 */
 #ifndef SOAP_TYPE_wsa5__MetadataType
 #define SOAP_TYPE_wsa5__MetadataType (9)
 /* complex XML schema type 'wsa5:MetadataType': */
@@ -191,7 +191,7 @@ struct SOAP_CMAC wsa5__MetadataType {
 };
 #endif
 
-/* wsa5.h:85 */
+/* wsa5.h:86 */
 #ifndef SOAP_TYPE_wsa5__ProblemActionType
 #define SOAP_TYPE_wsa5__ProblemActionType (11)
 /* complex XML schema type 'wsa5:ProblemActionType': */
@@ -213,7 +213,7 @@ struct SOAP_CMAC wsa5__ProblemActionType {
 };
 #endif
 
-/* wsa5.h:73 */
+/* wsa5.h:74 */
 #ifndef SOAP_TYPE_wsa5__RelatesToType
 #define SOAP_TYPE_wsa5__RelatesToType (10)
 /* simple XML schema type 'wsa5:RelatesToType': */
@@ -235,7 +235,7 @@ struct SOAP_CMAC wsa5__RelatesToType {
 };
 #endif
 
-/* wsa5.h:259 */
+/* wsa5.h:260 */
 #ifndef SOAP_TYPE_chan__ChannelInstanceType
 #define SOAP_TYPE_chan__ChannelInstanceType (36)
 /* simple XML schema type 'chan:ChannelInstanceType': */
@@ -255,7 +255,7 @@ struct SOAP_CMAC chan__ChannelInstanceType {
 };
 #endif
 
-/* wsa5.h:265 */
+/* wsa5.h:266 */
 #ifndef WITH_NOGLOBAL
 #ifndef SOAP_TYPE_SOAP_ENV__Header
 #define SOAP_TYPE_SOAP_ENV__Header (37)
@@ -291,7 +291,7 @@ struct SOAP_CMAC SOAP_ENV__Header {
 #endif
 #endif
 
-/* wsa5.h:282 */
+/* wsa5.h:283 */
 #ifndef WITH_NOGLOBAL
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
 #define SOAP_TYPE_SOAP_ENV__Detail (43)
@@ -314,7 +314,7 @@ struct SOAP_CMAC SOAP_ENV__Detail {
 #endif
 #endif
 
-/* wsa5.h:283 */
+/* wsa5.h:284 */
 #ifndef WITH_NOGLOBAL
 #ifndef SOAP_TYPE_SOAP_ENV__Code
 #define SOAP_TYPE_SOAP_ENV__Code (45)
@@ -337,7 +337,7 @@ struct SOAP_CMAC SOAP_ENV__Code {
 #endif
 #endif
 
-/* wsa5.h:284 */
+/* wsa5.h:285 */
 #ifndef WITH_NOGLOBAL
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
 #define SOAP_TYPE_SOAP_ENV__Reason (47)
@@ -357,7 +357,7 @@ struct SOAP_CMAC SOAP_ENV__Reason {
 #endif
 #endif
 
-/* wsa5.h:289 */
+/* wsa5.h:290 */
 #ifndef WITH_NOGLOBAL
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
 #define SOAP_TYPE_SOAP_ENV__Fault (51)
@@ -393,7 +393,7 @@ struct SOAP_CMAC SOAP_ENV__Fault {
 #endif
 #endif
 
-/* wsdd5.h:55 */
+/* wsdd5.h:63 */
 #ifndef SOAP_TYPE_wsdd__HelloType
 #define SOAP_TYPE_wsdd__HelloType (52)
 /* complex XML schema type 'wsdd:HelloType': */
@@ -419,7 +419,7 @@ struct SOAP_CMAC wsdd__HelloType {
 };
 #endif
 
-/* wsdd5.h:57 */
+/* wsdd5.h:65 */
 #ifndef SOAP_TYPE_wsdd__ByeType
 #define SOAP_TYPE_wsdd__ByeType (53)
 /* complex XML schema type 'wsdd:ByeType': */
@@ -445,7 +445,7 @@ struct SOAP_CMAC wsdd__ByeType {
 };
 #endif
 
-/* wsdd5.h:59 */
+/* wsdd5.h:67 */
 #ifndef SOAP_TYPE_wsdd__ProbeType
 #define SOAP_TYPE_wsdd__ProbeType (54)
 /* complex XML schema type 'wsdd:ProbeType': */
@@ -465,7 +465,7 @@ struct SOAP_CMAC wsdd__ProbeType {
 };
 #endif
 
-/* wsdd5.h:61 */
+/* wsdd5.h:69 */
 #ifndef SOAP_TYPE_wsdd__ProbeMatchesType
 #define SOAP_TYPE_wsdd__ProbeMatchesType (55)
 /* complex XML schema type 'wsdd:ProbeMatchesType': */
@@ -484,7 +484,7 @@ struct SOAP_CMAC wsdd__ProbeMatchesType {
 };
 #endif
 
-/* wsdd5.h:63 */
+/* wsdd5.h:71 */
 #ifndef SOAP_TYPE_wsdd__ProbeMatchType
 #define SOAP_TYPE_wsdd__ProbeMatchType (56)
 /* complex XML schema type 'wsdd:ProbeMatchType': */
@@ -510,7 +510,7 @@ struct SOAP_CMAC wsdd__ProbeMatchType {
 };
 #endif
 
-/* wsdd5.h:65 */
+/* wsdd5.h:73 */
 #ifndef SOAP_TYPE_wsdd__ResolveType
 #define SOAP_TYPE_wsdd__ResolveType (57)
 /* complex XML schema type 'wsdd:ResolveType': */
@@ -528,7 +528,7 @@ struct SOAP_CMAC wsdd__ResolveType {
 };
 #endif
 
-/* wsdd5.h:67 */
+/* wsdd5.h:75 */
 #ifndef SOAP_TYPE_wsdd__ResolveMatchesType
 #define SOAP_TYPE_wsdd__ResolveMatchesType (58)
 /* complex XML schema type 'wsdd:ResolveMatchesType': */
@@ -546,7 +546,7 @@ struct SOAP_CMAC wsdd__ResolveMatchesType {
 };
 #endif
 
-/* wsdd5.h:69 */
+/* wsdd5.h:77 */
 #ifndef SOAP_TYPE_wsdd__ResolveMatchType
 #define SOAP_TYPE_wsdd__ResolveMatchType (59)
 /* complex XML schema type 'wsdd:ResolveMatchType': */
@@ -572,7 +572,7 @@ struct SOAP_CMAC wsdd__ResolveMatchType {
 };
 #endif
 
-/* wsdd5.h:73 */
+/* wsdd5.h:81 */
 #ifndef SOAP_TYPE_wsdd__SecurityType
 #define SOAP_TYPE_wsdd__SecurityType (61)
 /* complex XML schema type 'wsdd:SecurityType': */
@@ -590,7 +590,7 @@ struct SOAP_CMAC wsdd__SecurityType {
 };
 #endif
 
-/* wsdd5.h:75 */
+/* wsdd5.h:83 */
 #ifndef SOAP_TYPE_wsdd__SigType
 #define SOAP_TYPE_wsdd__SigType (62)
 /* complex XML schema type 'wsdd:SigType': */
@@ -614,7 +614,7 @@ struct SOAP_CMAC wsdd__SigType {
 };
 #endif
 
-/* wsdd5.h:71 */
+/* wsdd5.h:79 */
 #ifndef SOAP_TYPE_wsdd__ScopesType
 #define SOAP_TYPE_wsdd__ScopesType (60)
 /* simple XML schema type 'wsdd:ScopesType': */
@@ -634,7 +634,7 @@ struct SOAP_CMAC wsdd__ScopesType {
 };
 #endif
 
-/* wsdd5.h:77 */
+/* wsdd5.h:85 */
 #ifndef SOAP_TYPE_wsdd__AppSequenceType
 #define SOAP_TYPE_wsdd__AppSequenceType (63)
 /* complex XML schema type 'wsdd:AppSequenceType': */
@@ -837,205 +837,205 @@ typedef char *_XML;
 typedef char *_QName;
 #endif
 
-/* wsa5.h:88 */
+/* wsa5.h:89 */
 #ifndef SOAP_TYPE_wsa5__RelationshipTypeOpenEnum
 #define SOAP_TYPE_wsa5__RelationshipTypeOpenEnum (12)
 typedef char *wsa5__RelationshipTypeOpenEnum;
 #endif
 
-/* wsa5.h:91 */
+/* wsa5.h:92 */
 #ifndef SOAP_TYPE_wsa5__FaultCodesOpenEnumType
 #define SOAP_TYPE_wsa5__FaultCodesOpenEnumType (13)
 typedef char *wsa5__FaultCodesOpenEnumType;
 #endif
 
-/* wsa5.h:210 */
+/* wsa5.h:211 */
 #ifndef SOAP_TYPE__wsa5__EndpointReference
 #define SOAP_TYPE__wsa5__EndpointReference (20)
 typedef struct wsa5__EndpointReferenceType _wsa5__EndpointReference;
 #endif
 
-/* wsa5.h:213 */
+/* wsa5.h:214 */
 #ifndef SOAP_TYPE__wsa5__ReferenceParameters
 #define SOAP_TYPE__wsa5__ReferenceParameters (21)
 typedef struct wsa5__ReferenceParametersType _wsa5__ReferenceParameters;
 #endif
 
-/* wsa5.h:216 */
+/* wsa5.h:217 */
 #ifndef SOAP_TYPE__wsa5__Metadata
 #define SOAP_TYPE__wsa5__Metadata (22)
 typedef struct wsa5__MetadataType _wsa5__Metadata;
 #endif
 
-/* wsa5.h:219 */
+/* wsa5.h:220 */
 #ifndef SOAP_TYPE__wsa5__MessageID
 #define SOAP_TYPE__wsa5__MessageID (23)
 typedef char *_wsa5__MessageID;
 #endif
 
-/* wsa5.h:222 */
+/* wsa5.h:223 */
 #ifndef SOAP_TYPE__wsa5__RelatesTo
 #define SOAP_TYPE__wsa5__RelatesTo (24)
 typedef struct wsa5__RelatesToType _wsa5__RelatesTo;
 #endif
 
-/* wsa5.h:225 */
+/* wsa5.h:226 */
 #ifndef SOAP_TYPE__wsa5__ReplyTo
 #define SOAP_TYPE__wsa5__ReplyTo (25)
 typedef struct wsa5__EndpointReferenceType _wsa5__ReplyTo;
 #endif
 
-/* wsa5.h:228 */
+/* wsa5.h:229 */
 #ifndef SOAP_TYPE__wsa5__From
 #define SOAP_TYPE__wsa5__From (26)
 typedef struct wsa5__EndpointReferenceType _wsa5__From;
 #endif
 
-/* wsa5.h:231 */
+/* wsa5.h:232 */
 #ifndef SOAP_TYPE__wsa5__FaultTo
 #define SOAP_TYPE__wsa5__FaultTo (27)
 typedef struct wsa5__EndpointReferenceType _wsa5__FaultTo;
 #endif
 
-/* wsa5.h:234 */
+/* wsa5.h:235 */
 #ifndef SOAP_TYPE__wsa5__To
 #define SOAP_TYPE__wsa5__To (28)
 typedef char *_wsa5__To;
 #endif
 
-/* wsa5.h:237 */
+/* wsa5.h:238 */
 #ifndef SOAP_TYPE__wsa5__Action
 #define SOAP_TYPE__wsa5__Action (29)
 typedef char *_wsa5__Action;
 #endif
 
-/* wsa5.h:240 */
+/* wsa5.h:241 */
 #ifndef SOAP_TYPE__wsa5__RetryAfter
 #define SOAP_TYPE__wsa5__RetryAfter (31)
 typedef ULONG64 _wsa5__RetryAfter;
 #endif
 
-/* wsa5.h:243 */
+/* wsa5.h:244 */
 #ifndef SOAP_TYPE__wsa5__ProblemHeaderQName
 #define SOAP_TYPE__wsa5__ProblemHeaderQName (32)
 typedef _QName _wsa5__ProblemHeaderQName;
 #endif
 
-/* wsa5.h:246 */
+/* wsa5.h:247 */
 #ifndef SOAP_TYPE__wsa5__ProblemIRI
 #define SOAP_TYPE__wsa5__ProblemIRI (33)
 typedef char *_wsa5__ProblemIRI;
 #endif
 
-/* wsa5.h:249 */
+/* wsa5.h:250 */
 #ifndef SOAP_TYPE__wsa5__ProblemAction
 #define SOAP_TYPE__wsa5__ProblemAction (34)
 typedef struct wsa5__ProblemActionType _wsa5__ProblemAction;
 #endif
 
-/* wsdd5.h:88 */
+/* wsdd5.h:96 */
 #ifndef SOAP_TYPE_wsdd__QNameListType
 #define SOAP_TYPE_wsdd__QNameListType (64)
 typedef _QName wsdd__QNameListType;
 #endif
 
-/* wsdd5.h:92 */
+/* wsdd5.h:100 */
 #ifndef SOAP_TYPE_wsdd__UriListType
 #define SOAP_TYPE_wsdd__UriListType (65)
 typedef char *wsdd__UriListType;
 #endif
 
-/* wsdd5.h:95 */
+/* wsdd5.h:103 */
 #ifndef SOAP_TYPE_wsdd__FaultCodeOpenType
 #define SOAP_TYPE_wsdd__FaultCodeOpenType (66)
 typedef char *wsdd__FaultCodeOpenType;
 #endif
 
-/* wsdd5.h:465 */
+/* wsdd5.h:473 */
 #ifndef SOAP_TYPE__wsdd__Hello
 #define SOAP_TYPE__wsdd__Hello (74)
 typedef struct wsdd__HelloType _wsdd__Hello;
 #endif
 
-/* wsdd5.h:468 */
+/* wsdd5.h:476 */
 #ifndef SOAP_TYPE__wsdd__Bye
 #define SOAP_TYPE__wsdd__Bye (75)
 typedef struct wsdd__ByeType _wsdd__Bye;
 #endif
 
-/* wsdd5.h:471 */
+/* wsdd5.h:479 */
 #ifndef SOAP_TYPE__wsdd__Probe
 #define SOAP_TYPE__wsdd__Probe (76)
 typedef struct wsdd__ProbeType _wsdd__Probe;
 #endif
 
-/* wsdd5.h:474 */
+/* wsdd5.h:482 */
 #ifndef SOAP_TYPE__wsdd__ProbeMatches
 #define SOAP_TYPE__wsdd__ProbeMatches (77)
 typedef struct wsdd__ProbeMatchesType _wsdd__ProbeMatches;
 #endif
 
-/* wsdd5.h:477 */
+/* wsdd5.h:485 */
 #ifndef SOAP_TYPE__wsdd__Resolve
 #define SOAP_TYPE__wsdd__Resolve (78)
 typedef struct wsdd__ResolveType _wsdd__Resolve;
 #endif
 
-/* wsdd5.h:480 */
+/* wsdd5.h:488 */
 #ifndef SOAP_TYPE__wsdd__ResolveMatches
 #define SOAP_TYPE__wsdd__ResolveMatches (79)
 typedef struct wsdd__ResolveMatchesType _wsdd__ResolveMatches;
 #endif
 
-/* wsdd5.h:483 */
+/* wsdd5.h:491 */
 #ifndef SOAP_TYPE__wsdd__Types
 #define SOAP_TYPE__wsdd__Types (80)
 typedef wsdd__QNameListType _wsdd__Types;
 #endif
 
-/* wsdd5.h:486 */
+/* wsdd5.h:494 */
 #ifndef SOAP_TYPE__wsdd__Scopes
 #define SOAP_TYPE__wsdd__Scopes (81)
 typedef struct wsdd__ScopesType _wsdd__Scopes;
 #endif
 
-/* wsdd5.h:489 */
+/* wsdd5.h:497 */
 #ifndef SOAP_TYPE__wsdd__XAddrs
 #define SOAP_TYPE__wsdd__XAddrs (82)
 typedef wsdd__UriListType _wsdd__XAddrs;
 #endif
 
-/* wsdd5.h:492 */
+/* wsdd5.h:500 */
 #ifndef SOAP_TYPE__wsdd__MetadataVersion
 #define SOAP_TYPE__wsdd__MetadataVersion (83)
 typedef unsigned int _wsdd__MetadataVersion;
 #endif
 
-/* wsdd5.h:495 */
+/* wsdd5.h:503 */
 #ifndef SOAP_TYPE__wsdd__SupportedMatchingRules
 #define SOAP_TYPE__wsdd__SupportedMatchingRules (84)
 typedef wsdd__UriListType _wsdd__SupportedMatchingRules;
 #endif
 
-/* wsdd5.h:498 */
+/* wsdd5.h:506 */
 #ifndef SOAP_TYPE__wsdd__Security
 #define SOAP_TYPE__wsdd__Security (85)
 typedef struct wsdd__SecurityType _wsdd__Security;
 #endif
 
-/* wsdd5.h:501 */
+/* wsdd5.h:509 */
 #ifndef SOAP_TYPE__wsdd__Sig
 #define SOAP_TYPE__wsdd__Sig (86)
 typedef struct wsdd__SigType _wsdd__Sig;
 #endif
 
-/* wsdd5.h:504 */
+/* wsdd5.h:512 */
 #ifndef SOAP_TYPE__wsdd__AppSequence
 #define SOAP_TYPE__wsdd__AppSequence (87)
 typedef struct wsdd__AppSequenceType _wsdd__AppSequence;
 #endif
 
-/* wsdd5.h:515 */
+/* wsdd5.h:523 */
 #ifndef SOAP_TYPE__wsdd__Id
 #define SOAP_TYPE__wsdd__Id (88)
 typedef char *_wsdd__Id;
