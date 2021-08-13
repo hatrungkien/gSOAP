@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tt="http://www.onvif.org/ver10/schema"
+    xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+    xmlns:ns1="http://www.w3.org/2004/08/xop/include"
+    xmlns:tds="http://www.onvif.org/ver10/device/wsdl">
+ <SOAP-ENV:Body>
+  <tds:GetDot11CapabilitiesResponse>
+   <tds:Capabilities>
+    <tt:TKIP>false</tt:TKIP>
+    <tt:ScanAvailableNetworks>false</tt:ScanAvailableNetworks>
+    <tt:MultipleConfiguration>false</tt:MultipleConfiguration>
+    <tt:AdHocStationMode>false</tt:AdHocStationMode>
+    <tt:WEP>false</tt:WEP>
+   </tds:Capabilities>
+  </tds:GetDot11CapabilitiesResponse>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tt="http://www.onvif.org/ver10/schema"
+    xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+    xmlns:ns1="http://www.w3.org/2004/08/xop/include"
+    xmlns:tds="http://www.onvif.org/ver10/device/wsdl">
+ <SOAP-ENV:Body>
+  <tds:GetDot1XConfigurationsResponse>
+   <tds:Dot1XConfiguration>
+    <tt:Dot1XConfigurationToken></tt:Dot1XConfigurationToken>
+    <tt:Identity></tt:Identity>
+    <tt:AnonymousID></tt:AnonymousID>
+    <tt:EAPMethod>0</tt:EAPMethod>
+    <tt:CACertificateID></tt:CACertificateID>
+    <tt:EAPMethodConfiguration>
+     <tt:TLSConfiguration>
+      <tt:CertificateID></tt:CertificateID>
+     </tt:TLSConfiguration>
+     <tt:Password></tt:Password>
+     <tt:Extension>
+     </tt:Extension>
+    </tt:EAPMethodConfiguration>
+    <tt:Extension>
+    </tt:Extension>
+   </tds:Dot1XConfiguration>
+  </tds:GetDot1XConfigurationsResponse>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
