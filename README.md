@@ -1,35 +1,42 @@
-#Set up gSOAP
+#Set up gSOAP#
+
+Install libs
 ```
-//get libs
 sudo apt-get install flex bison
 sudo apt-get install libssl-dev
 sudo apt-get install -y libz-dev
-
-//move to home directory
+```
+First, move to home directory
+```
 cd
-
-//download gSOAP Toolkit
+```
+Download gSOAP Toolkit
+```
 wget "https://sourceforge.net/projects/gsoap2/files/gsoap_2.8.116.zip/download"
-
-//unzip
+```
+Now you have zip file named download, unzip it
+```
 unzip download
-
-//now we have file gsoap-2.8 in home directory, lets setup
+```
+After that, we have file gsoap-2.8 in home directory, lets setup
+```
 cd gsoap-2.8
 ./configure
 cd gsoap
 make
 sudo make install
-
-//install the executables in a local folder, back to gsoap-2.8 directory
+```
+Install the executables in a local folder, first go back to /gsoap-2.8 directory
+```
 cd ..
 ./configure
 cd gsoap
 make
 sudo make install exec_prefix=$HOME
-
-//The ./configure command takes the following configuration options:
 cd ..
+```
+The ./configure command takes the following configuration options:
+```
 ./configure --enable-samples
 ./configure --enable-ipv6
 ./configure --enable-ipv6-v6only
@@ -44,7 +51,7 @@ cd ..
 ```
 
 
-#GENIVIA example
+#GENIVIA example#
 ```asm
 wsdl2h -o onvif.h -c -s -t ./typemap.dat http://www.onvif.org/onvif/ver10/network/wsdl/remotediscovery.wsdl
 soapcpp2 -2 -I ~/gsoap-2.8/gsoap/import onvif.h
