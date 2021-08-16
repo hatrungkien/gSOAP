@@ -1,5 +1,4 @@
-#Set up gSOAP#
-
+# Set up gSOAP
 Install libs
 ```
 sudo apt-get install flex bison
@@ -49,9 +48,9 @@ The ./configure command takes the following configuration options:
 ./configure --with-openssl=DIR
 ./configure --with-zlib=DIR
 ```
+---
 
-
-#GENIVIA example#
+# GENIVIA example
 ```asm
 wsdl2h -o onvif.h -c -s -t ./typemap.dat http://www.onvif.org/onvif/ver10/network/wsdl/remotediscovery.wsdl
 soapcpp2 -2 -I ~/gsoap-2.8/gsoap/import onvif.h
