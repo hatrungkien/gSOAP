@@ -55,7 +55,7 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         /// Disables and removes SOAP Header from message by setting soap->header = NULL
         virtual void soap_noheader();
         /// Add SOAP Header to message
-        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security);
+        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence);
         /// Get SOAP Header structure (i.e. soap->header, which is NULL when absent)
         virtual ::SOAP_ENV__Header *soap_header();
         /// Get SOAP Fault structure (i.e. soap->fault, which is NULL when absent)
@@ -143,6 +143,33 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         virtual int send_GetEventProperties(const char *soap_endpoint_url, const char *soap_action, _tev__GetEventProperties *tev__GetEventProperties);
         /// Web service asynchronous operation 'recv_GetEventProperties' to receive a response message from the connected endpoint, returns SOAP_OK or error code
         virtual int recv_GetEventProperties(_tev__GetEventPropertiesResponse &tev__GetEventPropertiesResponse);
+        //
+        /// Web service synchronous operation 'AddEventBroker' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int AddEventBroker(_tev__AddEventBroker *tev__AddEventBroker, _tev__AddEventBrokerResponse &tev__AddEventBrokerResponse) { return this->AddEventBroker(NULL, NULL, tev__AddEventBroker, tev__AddEventBrokerResponse); }
+        /// Web service synchronous operation 'AddEventBroker' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int AddEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__AddEventBroker *tev__AddEventBroker, _tev__AddEventBrokerResponse &tev__AddEventBrokerResponse) { return this->send_AddEventBroker(soap_endpoint_url, soap_action, tev__AddEventBroker) || this->recv_AddEventBroker(tev__AddEventBrokerResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_AddEventBroker' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_AddEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__AddEventBroker *tev__AddEventBroker);
+        /// Web service asynchronous operation 'recv_AddEventBroker' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_AddEventBroker(_tev__AddEventBrokerResponse &tev__AddEventBrokerResponse);
+        //
+        /// Web service synchronous operation 'DeleteEventBroker' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int DeleteEventBroker(_tev__DeleteEventBroker *tev__DeleteEventBroker, _tev__DeleteEventBrokerResponse &tev__DeleteEventBrokerResponse) { return this->DeleteEventBroker(NULL, NULL, tev__DeleteEventBroker, tev__DeleteEventBrokerResponse); }
+        /// Web service synchronous operation 'DeleteEventBroker' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int DeleteEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__DeleteEventBroker *tev__DeleteEventBroker, _tev__DeleteEventBrokerResponse &tev__DeleteEventBrokerResponse) { return this->send_DeleteEventBroker(soap_endpoint_url, soap_action, tev__DeleteEventBroker) || this->recv_DeleteEventBroker(tev__DeleteEventBrokerResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_DeleteEventBroker' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_DeleteEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__DeleteEventBroker *tev__DeleteEventBroker);
+        /// Web service asynchronous operation 'recv_DeleteEventBroker' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_DeleteEventBroker(_tev__DeleteEventBrokerResponse &tev__DeleteEventBrokerResponse);
+        //
+        /// Web service synchronous operation 'GetEventBrokers' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int GetEventBrokers(_tev__GetEventBrokers *tev__GetEventBrokers, _tev__GetEventBrokersResponse &tev__GetEventBrokersResponse) { return this->GetEventBrokers(NULL, NULL, tev__GetEventBrokers, tev__GetEventBrokersResponse); }
+        /// Web service synchronous operation 'GetEventBrokers' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int GetEventBrokers(const char *soap_endpoint_url, const char *soap_action, _tev__GetEventBrokers *tev__GetEventBrokers, _tev__GetEventBrokersResponse &tev__GetEventBrokersResponse) { return this->send_GetEventBrokers(soap_endpoint_url, soap_action, tev__GetEventBrokers) || this->recv_GetEventBrokers(tev__GetEventBrokersResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_GetEventBrokers' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_GetEventBrokers(const char *soap_endpoint_url, const char *soap_action, _tev__GetEventBrokers *tev__GetEventBrokers);
+        /// Web service asynchronous operation 'recv_GetEventBrokers' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_GetEventBrokers(_tev__GetEventBrokersResponse &tev__GetEventBrokersResponse);
         //
         /// Web service synchronous operation 'Renew' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
         virtual int Renew(_wsnt__Renew *wsnt__Renew, _wsnt__RenewResponse &wsnt__RenewResponse) { return this->Renew(NULL, NULL, wsnt__Renew, wsnt__RenewResponse); }

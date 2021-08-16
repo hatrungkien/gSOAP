@@ -17,7 +17,7 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
 #endif
 #include "wsddH.h"
 
-SOAP_SOURCE_STAMP("@(#) wsddServer.cpp ver 2.8.116 2021-08-16 07:47:25 GMT")
+SOAP_SOURCE_STAMP("@(#) wsddServer.cpp ver 2.8.116 2021-08-16 08:26:52 GMT")
 extern "C" SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)
 {
 #ifndef WITH_FASTCGI

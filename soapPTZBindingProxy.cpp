@@ -83,14 +83,6 @@ void PTZBindingProxy::PTZBindingProxy_init(soap_mode imode, soap_mode omode)
         { "chan", "http://schemas.microsoft.com/ws/2005/02/duplex", NULL, NULL },
         { "wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL },
         { "wsdd", "http://schemas.xmlsoap.org/ws/2005/04/discovery", NULL, NULL },
-        { "c14n", "http://www.w3.org/2001/10/xml-exc-c14n#", NULL, NULL },
-        { "ds", "http://www.w3.org/2000/09/xmldsig#", NULL, NULL },
-        { "saml1", "urn:oasis:names:tc:SAML:1.0:assertion", NULL, NULL },
-        { "saml2", "urn:oasis:names:tc:SAML:2.0:assertion", NULL, NULL },
-        { "wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", NULL, NULL },
-        { "xenc", "http://www.w3.org/2001/04/xmlenc#", NULL, NULL },
-        { "wsc", "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512", "http://schemas.xmlsoap.org/ws/2005/02/sc", NULL },
-        { "wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", "http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd", NULL },
         { "xmime", "http://tempuri.org/xmime.xsd", NULL, NULL },
         { "xop", "http://www.w3.org/2004/08/xop/include", NULL, NULL },
         { "tt", "http://www.onvif.org/ver10/schema", NULL, NULL },
@@ -147,7 +139,7 @@ void PTZBindingProxy::soap_noheader()
 {	this->soap->header = NULL;
 }
 
-void PTZBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security)
+void PTZBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence)
 {
 	::soap_header(this->soap);
 	this->soap->header->wsa5__MessageID = wsa5__MessageID;
@@ -159,7 +151,6 @@ void PTZBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToT
 	this->soap->header->wsa5__Action = wsa5__Action;
 	this->soap->header->chan__ChannelInstance = chan__ChannelInstance;
 	this->soap->header->wsdd__AppSequence = wsdd__AppSequence;
-	this->soap->header->wsse__Security = wsse__Security;
 }
 
 ::SOAP_ENV__Header *PTZBindingProxy::soap_header()
@@ -1765,6 +1756,62 @@ int PTZBindingProxy::recv_GetCompatibleConfigurations(_tptz__GetCompatibleConfig
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
 	tptz__GetCompatibleConfigurationsResponse.soap_get(soap, "tptz:GetCompatibleConfigurationsResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int PTZBindingProxy::send_MoveAndStartTracking(const char *soap_endpoint_url, const char *soap_action, _tptz__MoveAndStartTracking *tptz__MoveAndStartTracking)
+{
+	struct __tptz__MoveAndStartTracking soap_tmp___tptz__MoveAndStartTracking;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking";
+	soap_tmp___tptz__MoveAndStartTracking.tptz__MoveAndStartTracking = tptz__MoveAndStartTracking;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tptz__MoveAndStartTracking(soap, &soap_tmp___tptz__MoveAndStartTracking);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tptz__MoveAndStartTracking(soap, &soap_tmp___tptz__MoveAndStartTracking, "-tptz:MoveAndStartTracking", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tptz__MoveAndStartTracking(soap, &soap_tmp___tptz__MoveAndStartTracking, "-tptz:MoveAndStartTracking", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int PTZBindingProxy::recv_MoveAndStartTracking(_tptz__MoveAndStartTrackingResponse &tptz__MoveAndStartTrackingResponse)
+{
+	tptz__MoveAndStartTrackingResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tptz__MoveAndStartTrackingResponse.soap_get(soap, "tptz:MoveAndStartTrackingResponse", NULL);
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)

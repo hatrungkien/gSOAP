@@ -55,7 +55,7 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         /// Disables and removes SOAP Header from message by setting soap->header = NULL
         virtual void soap_noheader();
         /// Add SOAP Header to message
-        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security);
+        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence);
         /// Get SOAP Header structure (i.e. soap->header, which is NULL when absent)
         virtual ::SOAP_ENV__Header *soap_header();
         /// Get SOAP Fault structure (i.e. soap->fault, which is NULL when absent)
@@ -378,6 +378,24 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         /// Web service asynchronous operation 'recv_GetAssignedServerCertificates' to receive a response message from the connected endpoint, returns SOAP_OK or error code
         virtual int recv_GetAssignedServerCertificates(_tas__GetAssignedServerCertificatesResponse &tas__GetAssignedServerCertificatesResponse);
         //
+        /// Web service synchronous operation 'SetEnabledTLSVersions' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int SetEnabledTLSVersions(_tas__SetEnabledTLSVersions *tas__SetEnabledTLSVersions, _tas__SetEnabledTLSVersionsResponse &tas__SetEnabledTLSVersionsResponse) { return this->SetEnabledTLSVersions(NULL, NULL, tas__SetEnabledTLSVersions, tas__SetEnabledTLSVersionsResponse); }
+        /// Web service synchronous operation 'SetEnabledTLSVersions' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int SetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__SetEnabledTLSVersions *tas__SetEnabledTLSVersions, _tas__SetEnabledTLSVersionsResponse &tas__SetEnabledTLSVersionsResponse) { return this->send_SetEnabledTLSVersions(soap_endpoint_url, soap_action, tas__SetEnabledTLSVersions) || this->recv_SetEnabledTLSVersions(tas__SetEnabledTLSVersionsResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_SetEnabledTLSVersions' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_SetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__SetEnabledTLSVersions *tas__SetEnabledTLSVersions);
+        /// Web service asynchronous operation 'recv_SetEnabledTLSVersions' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_SetEnabledTLSVersions(_tas__SetEnabledTLSVersionsResponse &tas__SetEnabledTLSVersionsResponse);
+        //
+        /// Web service synchronous operation 'GetEnabledTLSVersions' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int GetEnabledTLSVersions(_tas__GetEnabledTLSVersions *tas__GetEnabledTLSVersions, _tas__GetEnabledTLSVersionsResponse &tas__GetEnabledTLSVersionsResponse) { return this->GetEnabledTLSVersions(NULL, NULL, tas__GetEnabledTLSVersions, tas__GetEnabledTLSVersionsResponse); }
+        /// Web service synchronous operation 'GetEnabledTLSVersions' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int GetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__GetEnabledTLSVersions *tas__GetEnabledTLSVersions, _tas__GetEnabledTLSVersionsResponse &tas__GetEnabledTLSVersionsResponse) { return this->send_GetEnabledTLSVersions(soap_endpoint_url, soap_action, tas__GetEnabledTLSVersions) || this->recv_GetEnabledTLSVersions(tas__GetEnabledTLSVersionsResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_GetEnabledTLSVersions' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_GetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__GetEnabledTLSVersions *tas__GetEnabledTLSVersions);
+        /// Web service asynchronous operation 'recv_GetEnabledTLSVersions' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_GetEnabledTLSVersions(_tas__GetEnabledTLSVersionsResponse &tas__GetEnabledTLSVersionsResponse);
+        //
         /// Web service synchronous operation 'SetClientAuthenticationRequired' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
         virtual int SetClientAuthenticationRequired(_tas__SetClientAuthenticationRequired *tas__SetClientAuthenticationRequired, _tas__SetClientAuthenticationRequiredResponse &tas__SetClientAuthenticationRequiredResponse) { return this->SetClientAuthenticationRequired(NULL, NULL, tas__SetClientAuthenticationRequired, tas__SetClientAuthenticationRequiredResponse); }
         /// Web service synchronous operation 'SetClientAuthenticationRequired' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
@@ -395,6 +413,24 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         virtual int send_GetClientAuthenticationRequired(const char *soap_endpoint_url, const char *soap_action, _tas__GetClientAuthenticationRequired *tas__GetClientAuthenticationRequired);
         /// Web service asynchronous operation 'recv_GetClientAuthenticationRequired' to receive a response message from the connected endpoint, returns SOAP_OK or error code
         virtual int recv_GetClientAuthenticationRequired(_tas__GetClientAuthenticationRequiredResponse &tas__GetClientAuthenticationRequiredResponse);
+        //
+        /// Web service synchronous operation 'SetCnMapsToUser' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int SetCnMapsToUser(_tas__SetCnMapsToUser *tas__SetCnMapsToUser, _tas__SetCnMapsToUserResponse &tas__SetCnMapsToUserResponse) { return this->SetCnMapsToUser(NULL, NULL, tas__SetCnMapsToUser, tas__SetCnMapsToUserResponse); }
+        /// Web service synchronous operation 'SetCnMapsToUser' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int SetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__SetCnMapsToUser *tas__SetCnMapsToUser, _tas__SetCnMapsToUserResponse &tas__SetCnMapsToUserResponse) { return this->send_SetCnMapsToUser(soap_endpoint_url, soap_action, tas__SetCnMapsToUser) || this->recv_SetCnMapsToUser(tas__SetCnMapsToUserResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_SetCnMapsToUser' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_SetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__SetCnMapsToUser *tas__SetCnMapsToUser);
+        /// Web service asynchronous operation 'recv_SetCnMapsToUser' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_SetCnMapsToUser(_tas__SetCnMapsToUserResponse &tas__SetCnMapsToUserResponse);
+        //
+        /// Web service synchronous operation 'GetCnMapsToUser' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int GetCnMapsToUser(_tas__GetCnMapsToUser *tas__GetCnMapsToUser, _tas__GetCnMapsToUserResponse &tas__GetCnMapsToUserResponse) { return this->GetCnMapsToUser(NULL, NULL, tas__GetCnMapsToUser, tas__GetCnMapsToUserResponse); }
+        /// Web service synchronous operation 'GetCnMapsToUser' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int GetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__GetCnMapsToUser *tas__GetCnMapsToUser, _tas__GetCnMapsToUserResponse &tas__GetCnMapsToUserResponse) { return this->send_GetCnMapsToUser(soap_endpoint_url, soap_action, tas__GetCnMapsToUser) || this->recv_GetCnMapsToUser(tas__GetCnMapsToUserResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_GetCnMapsToUser' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_GetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__GetCnMapsToUser *tas__GetCnMapsToUser);
+        /// Web service asynchronous operation 'recv_GetCnMapsToUser' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_GetCnMapsToUser(_tas__GetCnMapsToUserResponse &tas__GetCnMapsToUserResponse);
         //
         /// Web service synchronous operation 'AddCertPathValidationPolicyAssignment' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
         virtual int AddCertPathValidationPolicyAssignment(_tas__AddCertPathValidationPolicyAssignment *tas__AddCertPathValidationPolicyAssignment, _tas__AddCertPathValidationPolicyAssignmentResponse &tas__AddCertPathValidationPolicyAssignmentResponse) { return this->AddCertPathValidationPolicyAssignment(NULL, NULL, tas__AddCertPathValidationPolicyAssignment, tas__AddCertPathValidationPolicyAssignmentResponse); }

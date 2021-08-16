@@ -55,7 +55,7 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         /// Disables and removes SOAP Header from message by setting soap->header = NULL
         virtual void soap_noheader();
         /// Add SOAP Header to message
-        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security);
+        virtual void soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence);
         /// Get SOAP Header structure (i.e. soap->header, which is NULL when absent)
         virtual ::SOAP_ENV__Header *soap_header();
         /// Get SOAP Fault structure (i.e. soap->fault, which is NULL when absent)
@@ -332,5 +332,14 @@ A commercial use license is available from Genivia Inc., contact@genivia.com
         virtual int send_GetCompatibleConfigurations(const char *soap_endpoint_url, const char *soap_action, _tptz__GetCompatibleConfigurations *tptz__GetCompatibleConfigurations);
         /// Web service asynchronous operation 'recv_GetCompatibleConfigurations' to receive a response message from the connected endpoint, returns SOAP_OK or error code
         virtual int recv_GetCompatibleConfigurations(_tptz__GetCompatibleConfigurationsResponse &tptz__GetCompatibleConfigurationsResponse);
+        //
+        /// Web service synchronous operation 'MoveAndStartTracking' with default endpoint and default SOAP Action header, returns SOAP_OK or error code
+        virtual int MoveAndStartTracking(_tptz__MoveAndStartTracking *tptz__MoveAndStartTracking, _tptz__MoveAndStartTrackingResponse &tptz__MoveAndStartTrackingResponse) { return this->MoveAndStartTracking(NULL, NULL, tptz__MoveAndStartTracking, tptz__MoveAndStartTrackingResponse); }
+        /// Web service synchronous operation 'MoveAndStartTracking' to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int MoveAndStartTracking(const char *soap_endpoint_url, const char *soap_action, _tptz__MoveAndStartTracking *tptz__MoveAndStartTracking, _tptz__MoveAndStartTrackingResponse &tptz__MoveAndStartTrackingResponse) { return this->send_MoveAndStartTracking(soap_endpoint_url, soap_action, tptz__MoveAndStartTracking) || this->recv_MoveAndStartTracking(tptz__MoveAndStartTrackingResponse) ? this->soap->error : SOAP_OK; }
+        /// Web service asynchronous operation 'send_MoveAndStartTracking' to send a request message to the specified endpoint and SOAP Action header, returns SOAP_OK or error code
+        virtual int send_MoveAndStartTracking(const char *soap_endpoint_url, const char *soap_action, _tptz__MoveAndStartTracking *tptz__MoveAndStartTracking);
+        /// Web service asynchronous operation 'recv_MoveAndStartTracking' to receive a response message from the connected endpoint, returns SOAP_OK or error code
+        virtual int recv_MoveAndStartTracking(_tptz__MoveAndStartTrackingResponse &tptz__MoveAndStartTrackingResponse);
     };
 #endif

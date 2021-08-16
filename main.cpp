@@ -3,8 +3,8 @@
 #include "soapPTZBindingProxy.h"
 #include "soapPullPointSubscriptionBindingProxy.h"
 #include "soapRemoteDiscoveryBindingProxy.h"
-#include "plugin/wsddapi.h"
-#include "plugin/wsseapi.h"
+#include "/home/kien/gsoap-2.8/gsoap/plugin/wsddapi.h"
+#include "/home/kien/gsoap-2.8/gsoap/plugin/wsseapi.h"
 #include "wsdd.nsmap"
 
 #define USERNAME "username"

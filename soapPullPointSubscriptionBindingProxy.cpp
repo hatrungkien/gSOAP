@@ -83,14 +83,6 @@ void PullPointSubscriptionBindingProxy::PullPointSubscriptionBindingProxy_init(s
         { "chan", "http://schemas.microsoft.com/ws/2005/02/duplex", NULL, NULL },
         { "wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL },
         { "wsdd", "http://schemas.xmlsoap.org/ws/2005/04/discovery", NULL, NULL },
-        { "c14n", "http://www.w3.org/2001/10/xml-exc-c14n#", NULL, NULL },
-        { "ds", "http://www.w3.org/2000/09/xmldsig#", NULL, NULL },
-        { "saml1", "urn:oasis:names:tc:SAML:1.0:assertion", NULL, NULL },
-        { "saml2", "urn:oasis:names:tc:SAML:2.0:assertion", NULL, NULL },
-        { "wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", NULL, NULL },
-        { "xenc", "http://www.w3.org/2001/04/xmlenc#", NULL, NULL },
-        { "wsc", "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512", "http://schemas.xmlsoap.org/ws/2005/02/sc", NULL },
-        { "wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", "http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd", NULL },
         { "xmime", "http://tempuri.org/xmime.xsd", NULL, NULL },
         { "xop", "http://www.w3.org/2004/08/xop/include", NULL, NULL },
         { "tt", "http://www.onvif.org/ver10/schema", NULL, NULL },
@@ -147,7 +139,7 @@ void PullPointSubscriptionBindingProxy::soap_noheader()
 {	this->soap->header = NULL;
 }
 
-void PullPointSubscriptionBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security)
+void PullPointSubscriptionBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence)
 {
 	::soap_header(this->soap);
 	this->soap->header->wsa5__MessageID = wsa5__MessageID;
@@ -159,7 +151,6 @@ void PullPointSubscriptionBindingProxy::soap_header(char *wsa5__MessageID, struc
 	this->soap->header->wsa5__Action = wsa5__Action;
 	this->soap->header->chan__ChannelInstance = chan__ChannelInstance;
 	this->soap->header->wsdd__AppSequence = wsdd__AppSequence;
-	this->soap->header->wsse__Security = wsse__Security;
 }
 
 ::SOAP_ENV__Header *PullPointSubscriptionBindingProxy::soap_header()
@@ -589,6 +580,174 @@ int PullPointSubscriptionBindingProxy::recv_GetEventProperties(_tev__GetEventPro
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
 	tev__GetEventPropertiesResponse.soap_get(soap, "tev:GetEventPropertiesResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int PullPointSubscriptionBindingProxy::send_AddEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__AddEventBroker *tev__AddEventBroker)
+{
+	struct __tev__AddEventBroker soap_tmp___tev__AddEventBroker;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/events/wsdl/EventPortType/AddEventBrokerRequest";
+	soap_tmp___tev__AddEventBroker.tev__AddEventBroker = tev__AddEventBroker;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tev__AddEventBroker(soap, &soap_tmp___tev__AddEventBroker);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tev__AddEventBroker(soap, &soap_tmp___tev__AddEventBroker, "-tev:AddEventBroker", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tev__AddEventBroker(soap, &soap_tmp___tev__AddEventBroker, "-tev:AddEventBroker", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int PullPointSubscriptionBindingProxy::recv_AddEventBroker(_tev__AddEventBrokerResponse &tev__AddEventBrokerResponse)
+{
+	tev__AddEventBrokerResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tev__AddEventBrokerResponse.soap_get(soap, "tev:AddEventBrokerResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int PullPointSubscriptionBindingProxy::send_DeleteEventBroker(const char *soap_endpoint_url, const char *soap_action, _tev__DeleteEventBroker *tev__DeleteEventBroker)
+{
+	struct __tev__DeleteEventBroker soap_tmp___tev__DeleteEventBroker;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/events/wsdl/EventPortType/DeleteEventBrokerRequest";
+	soap_tmp___tev__DeleteEventBroker.tev__DeleteEventBroker = tev__DeleteEventBroker;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tev__DeleteEventBroker(soap, &soap_tmp___tev__DeleteEventBroker);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tev__DeleteEventBroker(soap, &soap_tmp___tev__DeleteEventBroker, "-tev:DeleteEventBroker", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tev__DeleteEventBroker(soap, &soap_tmp___tev__DeleteEventBroker, "-tev:DeleteEventBroker", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int PullPointSubscriptionBindingProxy::recv_DeleteEventBroker(_tev__DeleteEventBrokerResponse &tev__DeleteEventBrokerResponse)
+{
+	tev__DeleteEventBrokerResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tev__DeleteEventBrokerResponse.soap_get(soap, "tev:DeleteEventBrokerResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int PullPointSubscriptionBindingProxy::send_GetEventBrokers(const char *soap_endpoint_url, const char *soap_action, _tev__GetEventBrokers *tev__GetEventBrokers)
+{
+	struct __tev__GetEventBrokers soap_tmp___tev__GetEventBrokers;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventBrokersRequest";
+	soap_tmp___tev__GetEventBrokers.tev__GetEventBrokers = tev__GetEventBrokers;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tev__GetEventBrokers(soap, &soap_tmp___tev__GetEventBrokers);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tev__GetEventBrokers(soap, &soap_tmp___tev__GetEventBrokers, "-tev:GetEventBrokers", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tev__GetEventBrokers(soap, &soap_tmp___tev__GetEventBrokers, "-tev:GetEventBrokers", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int PullPointSubscriptionBindingProxy::recv_GetEventBrokers(_tev__GetEventBrokersResponse &tev__GetEventBrokersResponse)
+{
+	tev__GetEventBrokersResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tev__GetEventBrokersResponse.soap_get(soap, "tev:GetEventBrokersResponse", NULL);
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)

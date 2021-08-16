@@ -83,14 +83,6 @@ void AdvancedSecurityServiceBindingProxy::AdvancedSecurityServiceBindingProxy_in
         { "chan", "http://schemas.microsoft.com/ws/2005/02/duplex", NULL, NULL },
         { "wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL },
         { "wsdd", "http://schemas.xmlsoap.org/ws/2005/04/discovery", NULL, NULL },
-        { "c14n", "http://www.w3.org/2001/10/xml-exc-c14n#", NULL, NULL },
-        { "ds", "http://www.w3.org/2000/09/xmldsig#", NULL, NULL },
-        { "saml1", "urn:oasis:names:tc:SAML:1.0:assertion", NULL, NULL },
-        { "saml2", "urn:oasis:names:tc:SAML:2.0:assertion", NULL, NULL },
-        { "wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", NULL, NULL },
-        { "xenc", "http://www.w3.org/2001/04/xmlenc#", NULL, NULL },
-        { "wsc", "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512", "http://schemas.xmlsoap.org/ws/2005/02/sc", NULL },
-        { "wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", "http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd", NULL },
         { "xmime", "http://tempuri.org/xmime.xsd", NULL, NULL },
         { "xop", "http://www.w3.org/2004/08/xop/include", NULL, NULL },
         { "tt", "http://www.onvif.org/ver10/schema", NULL, NULL },
@@ -147,7 +139,7 @@ void AdvancedSecurityServiceBindingProxy::soap_noheader()
 {	this->soap->header = NULL;
 }
 
-void AdvancedSecurityServiceBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence, struct _wsse__Security *wsse__Security)
+void AdvancedSecurityServiceBindingProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action, struct chan__ChannelInstanceType *chan__ChannelInstance, struct wsdd__AppSequenceType *wsdd__AppSequence)
 {
 	::soap_header(this->soap);
 	this->soap->header->wsa5__MessageID = wsa5__MessageID;
@@ -159,7 +151,6 @@ void AdvancedSecurityServiceBindingProxy::soap_header(char *wsa5__MessageID, str
 	this->soap->header->wsa5__Action = wsa5__Action;
 	this->soap->header->chan__ChannelInstance = chan__ChannelInstance;
 	this->soap->header->wsdd__AppSequence = wsdd__AppSequence;
-	this->soap->header->wsse__Security = wsse__Security;
 }
 
 ::SOAP_ENV__Header *AdvancedSecurityServiceBindingProxy::soap_header()
@@ -2054,6 +2045,118 @@ int AdvancedSecurityServiceBindingProxy::recv_GetAssignedServerCertificates(_tas
 	return soap_closesock(soap);
 }
 
+int AdvancedSecurityServiceBindingProxy::send_SetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__SetEnabledTLSVersions *tas__SetEnabledTLSVersions)
+{
+	struct __tas__SetEnabledTLSVersions soap_tmp___tas__SetEnabledTLSVersions;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetEnabledTLSVersions";
+	soap_tmp___tas__SetEnabledTLSVersions.tas__SetEnabledTLSVersions = tas__SetEnabledTLSVersions;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tas__SetEnabledTLSVersions(soap, &soap_tmp___tas__SetEnabledTLSVersions);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tas__SetEnabledTLSVersions(soap, &soap_tmp___tas__SetEnabledTLSVersions, "-tas:SetEnabledTLSVersions", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tas__SetEnabledTLSVersions(soap, &soap_tmp___tas__SetEnabledTLSVersions, "-tas:SetEnabledTLSVersions", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int AdvancedSecurityServiceBindingProxy::recv_SetEnabledTLSVersions(_tas__SetEnabledTLSVersionsResponse &tas__SetEnabledTLSVersionsResponse)
+{
+	tas__SetEnabledTLSVersionsResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tas__SetEnabledTLSVersionsResponse.soap_get(soap, "tas:SetEnabledTLSVersionsResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int AdvancedSecurityServiceBindingProxy::send_GetEnabledTLSVersions(const char *soap_endpoint_url, const char *soap_action, _tas__GetEnabledTLSVersions *tas__GetEnabledTLSVersions)
+{
+	struct __tas__GetEnabledTLSVersions soap_tmp___tas__GetEnabledTLSVersions;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetEnabledTLSVersions";
+	soap_tmp___tas__GetEnabledTLSVersions.tas__GetEnabledTLSVersions = tas__GetEnabledTLSVersions;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tas__GetEnabledTLSVersions(soap, &soap_tmp___tas__GetEnabledTLSVersions);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tas__GetEnabledTLSVersions(soap, &soap_tmp___tas__GetEnabledTLSVersions, "-tas:GetEnabledTLSVersions", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tas__GetEnabledTLSVersions(soap, &soap_tmp___tas__GetEnabledTLSVersions, "-tas:GetEnabledTLSVersions", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int AdvancedSecurityServiceBindingProxy::recv_GetEnabledTLSVersions(_tas__GetEnabledTLSVersionsResponse &tas__GetEnabledTLSVersionsResponse)
+{
+	tas__GetEnabledTLSVersionsResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tas__GetEnabledTLSVersionsResponse.soap_get(soap, "tas:GetEnabledTLSVersionsResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
 int AdvancedSecurityServiceBindingProxy::send_SetClientAuthenticationRequired(const char *soap_endpoint_url, const char *soap_action, _tas__SetClientAuthenticationRequired *tas__SetClientAuthenticationRequired)
 {
 	struct __tas__SetClientAuthenticationRequired soap_tmp___tas__SetClientAuthenticationRequired;
@@ -2157,6 +2260,118 @@ int AdvancedSecurityServiceBindingProxy::recv_GetClientAuthenticationRequired(_t
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
 	tas__GetClientAuthenticationRequiredResponse.soap_get(soap, "tas:GetClientAuthenticationRequiredResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int AdvancedSecurityServiceBindingProxy::send_SetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__SetCnMapsToUser *tas__SetCnMapsToUser)
+{
+	struct __tas__SetCnMapsToUser soap_tmp___tas__SetCnMapsToUser;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCnMapsToUser";
+	soap_tmp___tas__SetCnMapsToUser.tas__SetCnMapsToUser = tas__SetCnMapsToUser;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tas__SetCnMapsToUser(soap, &soap_tmp___tas__SetCnMapsToUser);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tas__SetCnMapsToUser(soap, &soap_tmp___tas__SetCnMapsToUser, "-tas:SetCnMapsToUser", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tas__SetCnMapsToUser(soap, &soap_tmp___tas__SetCnMapsToUser, "-tas:SetCnMapsToUser", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int AdvancedSecurityServiceBindingProxy::recv_SetCnMapsToUser(_tas__SetCnMapsToUserResponse &tas__SetCnMapsToUserResponse)
+{
+	tas__SetCnMapsToUserResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tas__SetCnMapsToUserResponse.soap_get(soap, "tas:SetCnMapsToUserResponse", NULL);
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int AdvancedSecurityServiceBindingProxy::send_GetCnMapsToUser(const char *soap_endpoint_url, const char *soap_action, _tas__GetCnMapsToUser *tas__GetCnMapsToUser)
+{
+	struct __tas__GetCnMapsToUser soap_tmp___tas__GetCnMapsToUser;
+	if (soap_endpoint_url != NULL)
+		soap_endpoint = soap_endpoint_url;
+	if (soap_action == NULL)
+		soap_action = "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCnMapsToUser";
+	soap_tmp___tas__GetCnMapsToUser.tas__GetCnMapsToUser = tas__GetCnMapsToUser;
+	soap_begin(soap);
+	soap_set_version(soap, 2); /* use SOAP1.2 */
+	soap->encodingStyle = NULL; /* use SOAP literal style */
+	soap_serializeheader(soap);
+	soap_serialize___tas__GetCnMapsToUser(soap, &soap_tmp___tas__GetCnMapsToUser);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if ((soap->mode & SOAP_IO_LENGTH))
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___tas__GetCnMapsToUser(soap, &soap_tmp___tas__GetCnMapsToUser, "-tas:GetCnMapsToUser", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___tas__GetCnMapsToUser(soap, &soap_tmp___tas__GetCnMapsToUser, "-tas:GetCnMapsToUser", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	return SOAP_OK;
+}
+
+int AdvancedSecurityServiceBindingProxy::recv_GetCnMapsToUser(_tas__GetCnMapsToUserResponse &tas__GetCnMapsToUserResponse)
+{
+	tas__GetCnMapsToUserResponse.soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	tas__GetCnMapsToUserResponse.soap_get(soap, "tas:GetCnMapsToUserResponse", NULL);
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
